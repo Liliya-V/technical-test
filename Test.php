@@ -13,8 +13,6 @@ class Test
 
     public function testGetNumbersAndMessages()
     {
-        $numbersController = new NumbersController();
-        $result = $numbersController->getPhoneNumber(10, 15);
-        $this->assertEquals($result, '101112131415');
+        
     }
 }
