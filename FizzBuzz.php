@@ -1,44 +1,53 @@
 <?php
 
-class NumbersController
+class IntegerAnalizer
 {
-    /** Method takes two integers and two strings,
-     * loops over given integers and returns all numbers in between them, assigning
-     * different messages depending on if the numbers are divisible or not by 3 and 5.
-     * Returns an error if a first number is bigger than second.
-     * @param int $a expected - random number from 1 tp 100
-     * @param int $b expected - random number from 1 tp 100
-     * @param string $msg1
-     * @param string $buzz
+    /**
+     * Outputs integers between integer1 and integer 2 (including them) and assigns
+     * different messages depending on if the numbers are divisible by 3 or 5 or both.
+     * @param int $integer1 - random number from 1 to 100
+     * @param int $integer2 - random number from 1 to 100
      * @return string
      */
-    public function getNumbersAndMessages(int $a, int $b, string $msg1, string $msg2): string
+    public function fizzBuzz(int $integer1, int $integer2): string
     {
-        if ($b < $a) {
-            $error = 'Integer A is less than integer B, so there is nothing in between to output';
-            return $error;
-        }
-            $output = '';
-        for ($i = $a; $i <= $b; $i++) {
-            if ($i % 15 === 0) {
-                $output .= $i ." ".$msg1 ." ". $msg2 ."<br />";
-            } else if ($i % 3 == 0) {
-                $output .= $i ." " .$msg1 . "<br />";
-            } else if ($i % 5 == 0) {
-                $output .= $i ." ". $msg2 . "<br />";
+        $this->validateIntegers($integer1, $integer2);
+        $output = '';
+        for ($currentInt = $integer1; $currentInt <= $integer2; $currentInt++) {
+            if ($currentInt % 15 === 0) {
+                $output .= $currentInt . " Fizz Buzz <br>";
+            } else if ($currentInt % 3 == 0) {
+                $output .= $currentInt . " Fizz <br>";
+            } else if ($currentInt % 5 == 0) {
+                $output .= $currentInt . " Buzz <br>";
             } else {
-                $output .=  $i . "<br />";
+                $output .=  $currentInt . "<br>";
             }
         }
         return $output;
     }
+
+    /**
+     * Checks if a second given integer is bigger than a first one.
+     * @param int $integer1
+     * @param int $integer2
+     * @throws Exception
+     */
+    private function validateIntegers(int $integer1, int $integer2) {
+        if ($integer2 < $integer1) {
+            throw new Exception('Integer 2 can not be smaller than integer 1');
+        }
+    }
 }
-$numbersController = new numbersController();
-$a = rand(1,100);
-$b = rand(1,100);
-$msg1 = 'fizz';
-$msg2 = 'buzz';
-$output = $numbersController->getNumbersAndMessages($a, $b, $msg1, $msg2);
-echo $output;
+$integerAnalizer = new integerAnalizer();
+$integer1 = rand(1,100);
+$integer2 = rand(1,100);
+try {
+    $output = $integerAnalizer->fizzBuzz($integer1, $integer2);
+    echo $output;
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
 
 
