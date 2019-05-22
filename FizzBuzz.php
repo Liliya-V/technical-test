@@ -3,7 +3,7 @@
 class IntegerAnalizer
 {
     /**
-     * Outputs integers between integer1 and integer 2 (including them) and assigns
+     * Outputs integers between integer 1 and integer 2 (including them) and assigns
      * different messages depending on if the numbers are divisible by 3 or 5 or both.
      * @param int $integer1 - random number from 1 to 100
      * @param int $integer2 - random number from 1 to 100
@@ -45,8 +45,8 @@ $integer2 = rand(1,100);
 try {
     $output = $integerAnalizer->fizzBuzz($integer1, $integer2);
     echo $output;
-} catch (Exception $e) {
-    echo $e->getMessage();
+} catch (Exception $exeption) {
+    echo $exeption->getMessage();
 }
 
 

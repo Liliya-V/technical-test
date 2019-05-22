@@ -46,5 +46,4 @@ class Test extends TestCase
         $integerAnalizer->fizzBuzz('string1', 'string2');
     }
 
-
 }
